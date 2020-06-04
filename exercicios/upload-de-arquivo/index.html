@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <title>Upload de arquivo</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+      
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <label>Informações do arquivo</label>
+                <input id="dadosArquivo" class="form-control" placeholder="formato: nome/tamanho/tipo">
+            
+                <button class="btn btn-primary mt-2" onclick="arquivoController.envia()"  >Enviar</button>
+            </div>
+        </div>
+    </div>
+    <script src="Arquivo.js"></script>
+    <script src="ArquivoController.js"></script>
+    <script src="ArquivoHelper.js"></script>
+    <script>
+        let arquivoController = new ArquivoController();
+    </script>
+  </body>
+</html>
