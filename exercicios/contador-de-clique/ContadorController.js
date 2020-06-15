@@ -1,5 +1,3 @@
-// ContadorController.js
-
 class ContadorController {
 
     constructor() {
@@ -10,6 +8,8 @@ class ContadorController {
     get contador() {
         return this._contador;
     }
+
+    //o metodo incrementar é acessado através do atributo onclick no botão, a cada clique é incrementado +1
 
     incrementar() {
         this._contador++;

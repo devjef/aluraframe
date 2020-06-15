@@ -1,3 +1,5 @@
+//Validação do código feita no submit passando como atributo no form onsubmit="validaCodigo.valida(event)
+
 class Codigo {
     
     constructor() {
