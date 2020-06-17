@@ -1,0 +1,51 @@
+<!-- troca-troca.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <p class="info">Era uma vez...</p>
+    <script>
+
+        class Aviao {
+
+            constructor(nome) {
+                this._nome = nome;
+            }
+
+            voa() {
+                alert(`${this._nome} está voando`);
+            }
+
+            ligaMotor() {
+                console.log('liga o motor');
+            }
+
+            fechaPortas() {
+                console.log('Portas sendo fechadas');
+            }
+        }
+
+        class Passarinho {
+
+            constructor(nome) {
+                this._nome = nome;
+            }
+
+            //Queremos utilizar o método voa de Aviao, porém não podemos usar o padrão Herança pois herdaremos todos os métodos de avião sendo que nossa classe em questão é um Passarinho
+
+            voa() {
+                console.log(this)
+                //dessa maneira estamos dizendo que nosso método voa de Passarinho, executa o método voa de Aviao, usando os dados desta classe (this)
+               Reflect.apply(Aviao.prototype.voa, this, [])
+            }
+        }
+
+        let passarinho = new Passarinho('piupiu')
+        passarinho.voa()
+
+    </script>
+</body>
+</html>
