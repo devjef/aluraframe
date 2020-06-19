@@ -3,17 +3,35 @@ class NegociacaoController {
     constructor() {
         let $ = document.querySelector.bind(document);
 
+        self = this;
+
         this._inputData = $('#data');
         this._inputQuantidade = $('#quantidade');
         this._inputValor = $('#valor');
-
-        this._listaNegociacoes = new ListaNegociacoes(model => this._negociacoesView.update(model))
-
         this._negociacoesView = new NegociacoesView($('#negociacoesView'));
-
         this._mensagem = new Mensagem();
         this._mensagemView = new MensagemView($('#alertaMensagem'));
         this._mensagemView.update(this._mensagem);
+        this._listaNegociacoes = new Proxy(new ListaNegociacoes(), {
+
+            get(target, prop, receiver) {
+                console.log(target)
+                console.log(prop)
+                console.log(receiver)
+
+                if (['adiciona', 'esvazia'].includes(prop) && typeof(target[prop]) == typeof(Function)) {
+                    return function() {
+                        console.log(`Alteração usando o método ${prop} interceptada`);
+                        Reflect.apply(target[prop], target, arguments);
+                        self._negociacoesView.update(target);
+                        console.log(target)
+                    }
+                }
+
+                return Reflect.get(target, prop, receiver)
+            }
+
+        });
     };
 
     adiciona(e) {

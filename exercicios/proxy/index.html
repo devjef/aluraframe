@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy</title>
+</head>
+
+<body>
+    <script>
+        // precisamos criar um proxy (cópia) de um objeto literal e acionar uma armadilha assim que o método desse objeto for invocado
+
+        let funcionario = {
+            email: 'abc@123.com.br'
+        };
+
+        let funcionarioProxy = new Proxy(funcionario, {
+
+            get(target, prop, receiver) {
+
+                console.log(`A propriedade: '${prop}' acionou a armadilha!`)
+                return Reflect.get(target, prop, receiver)
+                    // também podemos usar 'return target[prop]' para retornar a diretamente a propriedade
+            }
+        });
+
+        console.log(funcionarioProxy.email);
+
+        // podemos evitar a declaração da variavel funcionarioProxy da seguinte maneira:
+
+        let funcionario2 = new Proxy({
+            email: 'def@456.com.br'
+        }, {
+            get(target, prop, receiver) {
+
+                console.log(`A propriedade: '${prop}' acionou a armadilha!`)
+                return target[prop]
+            }
+        });
+
+        console.log(funcionario2.email);
+
+        // proxy em POO
+
+        class Funcionario {
+
+            constructor(email) {
+                this._email = email;
+            }
+
+            get email() {
+                return this._email;
+            }
+
+            set email(email) {
+                this._email = email;
+            }
+        }
+
+        let funcionario3 = new Proxy(new Funcionario('ghi@789.com.br'), {
+
+            get(target, prop, receiver) {
+
+                console.log("Armadilha acionada!");
+                return target[prop]
+            }
+        })
+
+        funcionario3.email = 'jkl@101112.com.br'
+        console.log(funcionario3.email)
+
+        // como mostrar o valor alterado e o valor novo?
+
+        let funcionario4 = new Proxy(funcionario, {
+
+            set(target, prop, value, receiver) {
+
+                console.log(`Valor alterado de: ${target[prop]} para: ${value}`);
+                target[prop] = value
+                    //podemos usar também 'target[prop] = value'
+            }
+        });
+
+        funcionario4.email = 'def@456.com.br';
+        console.log(funcionario4.email);
+
+        let funcionario5 = new Proxy(new Funcionario('abc@123.com.br'), {
+
+            set(target, prop, value, receiver) {
+
+                console.log(`O valor da propriedade '${prop}' foi alterada de: ${target[prop]} para: ${value}`);
+                target[prop] = value
+            }
+
+        });
+
+        funcionario5.email = 'mno@131415.com.br';
+
+
+        //arguments
+
+        function exibeNomeCompleto() {
+            console.log(`${arguments[0]} ${arguments[1]}`);
+        };
+
+        //Por mais que nossa função não receba parâmetros, podemos ter acesso aos parâmetros passados com arguments. É uma variável implícita que nos dá acesso a todos os parâmetros passados para a função ou método. É claro que a primeira forma, nomear os parâmetros da função, é menos verbosa e mais legível. Mas há muitos hacks em JavaScript que podem fazer uso de arguments. 
+
+        exibeNomeCompleto('Jeferson', 'Lopes');
+
+
+        //proxy intercepta métodos?
+
+        class Pessoa {
+
+            constructor(nome) {
+                this._nome = nome;
+            }
+
+            get nome() {
+                return this._nome;
+            }
+
+            set nome(nome) {
+                this._nome = nome;
+            }
+
+            grita(frase) {
+                return console.log(`${this._nome} grita ${frase}`);
+            }
+        };
+
+        //E se quisermos interceptar a chamada do método grita? A má notícia é que toda proxy criada, por padrão, não esta preparada para interceptar métodos (getters e setters são exceções a este problema). Essa limitação ocorre porque sempre que um método de um objeto (que não deixa de ser uma propriedade que armazena uma função) é chamado, primeiro é realizado uma operação de leitura (get, do nosso handler da proxy) e depois os parâmetros são passados através de Reflect.apply. O problema é que, como o método é interceptado pelo get do handler passado para a proxy, não temos acesso aos seus parâmetros. E agora?
+
+        //Uma solução é implementar o seguinte código:
+
+        let pessoa = new Proxy(new Pessoa('Jeferson'), {
+
+            get(target, prop, receiver) {
+                if (prop == 'grita' && typeof(target[prop]) == typeof(Function)) {
+                    // essa função retornada irá substituir o método 'grita' no proxy!!! Ou seja, estamos usando o handler do proxy para modificar o próprio proxy, que loucura!
+                    return function() {
+                        console.log(`Método chamado: ${prop}`);
+                        // Quando usarmos Reflect.apply, Reflect.get e Reflect.set precisamos retornar o resultado da operação com return
+                        // arguments é uma variável implícita que dá acesso à todos os parâmetros recebidos pelo método/função
+                        return Reflect.apply(target[prop], target, arguments);
+                    }
+                }
+                // só executa se não for função
+                return Reflect.get(target, prop, receiver);
+            }
+        });
+
+        pessoa.grita('Olá');
+
+        //Veja que no código do nosso proxy, como estamos substituindo o método grita por outra função e não sabemos se ela recebe ou não um parâmetro, usamos arguments na função substituta para chamarmos Reflect.apply, garantindo assim que a nova função, quando executada, receba corretamente seus parâmetros logo após executarmos o código que desejarmos (armadilha).
+    </script>
+</body>
+
+</html>
