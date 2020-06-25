@@ -14,4 +14,4 @@ https://cursos.alura.com.br/course/javascript-es6-orientacao-a-objetos-parte-2
 
 - Programação assincrona com promises
 
-- Implemente uma solução de data binding
+- Implementação de solução data binding
