@@ -1,9 +1,17 @@
-# Curso Alura: JavaScript: Conhecendo o Browser e padrões de projeto
+# Curso de Javascript: JavaScript: Conhecendo o Browser e padrões de projeto
+https://cursos.alura.com.br/course/javascript-es6-orientacao-a-objetos-parte-1
 
-Paradigma orientado a objetos ao funcional para resolver problemas.
+- União do paradigma orientado a objetos ao funcional para resolver problemas.
 
-Novos recursos do ECMASCRIPT 6.
+- Aplicação de novos recursos do ECMASCRIPT 6
 
-Aplicação no modelo MVC.
+- Estruturação da aplicação no modelo MVC
 
-Padrões de projeto.
+- Utilização de Padrões de projeto.
+
+# Curso de JavaScript: Aprofundando em MVC, padrão Proxy e Factory
+https://cursos.alura.com.br/course/javascript-es6-orientacao-a-objetos-parte-2
+
+- Programação assincrona com promises
+
+- Implemente uma solução de data binding
