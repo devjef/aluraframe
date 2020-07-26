@@ -2,19 +2,19 @@
 
 Para utilizar o projeto você precisará do Node.js na pastas /server e /cliente e da instalação do Babel na pasta /cliente:
 
-npm install babel-cli@6.10.1 --save-dev
-npm install babel-preset-es2015@6.9.0 --save-dev
-npm install systemjs@0.19.31 --save
-npm install babel-plugin-transform-es2015-modules-systemjs@6.9.0 --save-dev
+- npm install babel-cli@6.10.1 --save-dev
+- npm install babel-preset-es2015@6.9.0 --save-dev
+- npm install systemjs@0.19.31 --save
+- npm install babel-plugin-transform-es2015-modules-systemjs@6.9.0 --save-dev
 
 Para rodar o projeto:
 
 em /client
-npm run watch
+- npm run watch
 Transcompila o código de ES6 para ES5 utilizando Babel.
 
 em /server
-npm start
+- npm start
 Roda a aplicação
 
 Esta aplicação foi criada com os seguintes cursos:
