@@ -1,12 +1,10 @@
 # Iniciando a aplicação
 
-em /client
-- npm run watch
-- Transcompila o código de ES6 para ES5 utilizando Babel.
+em /client:
+npm run watch
 
-em /server
-- npm start
-- Roda a aplicação
+em /server:
+npm start
 
 Esta aplicação foi criada com os seguintes cursos:
 
