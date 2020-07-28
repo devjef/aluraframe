@@ -1,10 +1,5 @@
 # Iniciando a aplicação
 
-Para utilizar o projeto baixe os modulos nas pastas /server e /cliente utilizando o comando
--npm install
-
-Para rodar o projeto:
-
 em /client
 - npm run watch
 Transcompila o código de ES6 para ES5 utilizando Babel.
