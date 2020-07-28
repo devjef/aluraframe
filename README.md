@@ -1,6 +1,7 @@
 # Iniciando a aplicação
 
-Para utilizar o projeto você precisará do Node.js na pastas /server e /cliente
+Para utilizar o projeto baixe os modulos nas pastas /server e /cliente utilizando o comando
+-npm install
 
 Para rodar o projeto:
 
