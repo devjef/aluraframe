@@ -1,32 +1,12 @@
-# Iniciando a aplicação
+# Aluraframe
 
-em /client:
-npm run watch
+> Projeto construido durante os cursos [Javascript Avançado 1](https://cursos.alura.com.br/course/javascript-es6-orientacao-a-objetos-parte-1), [Javascript Avançado 2](https://cursos.alura.com.br/course/javascript-es6-orientacao-a-objetos-parte-2) e [Javascript Avançado 3](https://cursos.alura.com.br/course/javascript-es6-orientacao-a-objetos-parte-3) da Alura!
 
-em /server:
+## Como rodar o projeto?
+
+Após baixar o projeto, acesse ele via seu terminal rode os comandos:
+
+```sh
+npm install
 npm start
-
-Esta aplicação foi criada com os seguintes cursos:
-
-# Curso de Javascript: JavaScript: Conhecendo o Browser e padrões de projeto
-https://cursos.alura.com.br/course/javascript-es6-orientacao-a-objetos-parte-1
-
-- União do paradigma orientado a objetos ao funcional para resolver problemas.
-- Aplicação de novos recursos do ECMASCRIPT 6
-- Estruturação da aplicação no modelo MVC
-- Utilização de Padrões de projeto.
-
-# Curso de JavaScript: Aprofundando em MVC, padrão Proxy e Factory
-https://cursos.alura.com.br/course/javascript-es6-orientacao-a-objetos-parte-2
-
-- Programação assincrona com promises
-- Implementação de solução data binding
-
-# JavaScript: Salvando dados localmente com IndexedDB
-https://cursos.alura.com.br/course/javascript-es6-orientacao-a-objetos-parte-3
-
- - Armazenamento de dados offline com IndexedDB
- - Fetch API
- - Uso de Babel e garantia de compatibilidade máxima no código
- - Uso das vantagens do ECMASCRIPT 2015 (ES2015) modules
- - Código ainda mais elegante com novos padrões de projeto
+```
